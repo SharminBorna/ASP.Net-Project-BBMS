@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProcheshtaDBModelStoreContainer" CdmEntityContainer="ProcheshtaDBContext">
+    <EntitySetMapping Name="BloodGroups">
+      <EntityTypeMapping TypeName="ProcheshtaDBModel.BloodGroup">
+        <MappingFragment StoreEntitySet="BloodGroups">
+          <ScalarProperty Name="bloodGroupId" ColumnName="bloodGroupId" />
+          <ScalarProperty Name="bloodGroup1" ColumnName="bloodGroup" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BloodRequests">
+      <EntityTypeMapping TypeName="ProcheshtaDBModel.BloodRequest">
+        <MappingFragment StoreEntitySet="BloodRequest">
+          <ScalarProperty Name="requestID" ColumnName="requestID" />
+          <ScalarProperty Name="patientID" ColumnName="patientID" />
+          <ScalarProperty Name="bloodGroupId" ColumnName="bloodGroupId" />
+          <ScalarProperty Name="caseDate" ColumnName="caseDate" />
+          <ScalarProperty Name="reasonForBlood" ColumnName="reasonForBlood" />
+          <ScalarProperty Name="contactNo" ColumnName="contactNo" />
+          <ScalarProperty Name="hospitalID" ColumnName="hospitalID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Donors">
+      <EntityTypeMapping TypeName="ProcheshtaDBModel.Donor">
+        <MappingFragment StoreEntitySet="Donors">
+          <ScalarProperty Name="donorId" ColumnName="donorId" />
+          <ScalarProperty Name="donorName" ColumnName="donorName" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="weight" ColumnName="weight" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="bloodGroup" ColumnName="bloodGroup" />
+          <ScalarProperty Name="contactNo" ColumnName="contactNo" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="donorAddress" ColumnName="donorAddress" />
+          <ScalarProperty Name="lastDonationDate" ColumnName="lastDonationDate" />
+          <ScalarProperty Name="donorImage" ColumnName="donorImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genders">
+      <EntityTypeMapping TypeName="ProcheshtaDBModel.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="genderId" ColumnName="genderId" />
+          <ScalarProperty Name="gender1" ColumnName="gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hospitals">
+      <EntityTypeMapping TypeName="ProcheshtaDBModel.Hospital">
+        <MappingFragment StoreEntitySet="Hospital">
+          <ScalarProperty Name="hospitalId" ColumnName="hospitalId" />
+          <ScalarProperty Name="hospitalName" ColumnName="hospitalName" />
+          <ScalarProperty Name="hospitalAddress" ColumnName="hospitalAddress" />
+          <ScalarProperty Name="contactNo" ColumnName="contactNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patients">
+      <EntityTypeMapping TypeName="ProcheshtaDBModel.Patient">
+        <MappingFragment StoreEntitySet="Patients">
+          <ScalarProperty Name="patientID" ColumnName="patientID" />
+          <ScalarProperty Name="patientName" ColumnName="patientName" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="bloodGroup" ColumnName="bloodGroup" />
+          <ScalarProperty Name="contactNo" ColumnName="contactNo" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

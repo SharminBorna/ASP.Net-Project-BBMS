@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProcheshtaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BloodGroup">
+    <Key>
+      <PropertyRef Name="bloodGroupId" />
+    </Key>
+    <Property Name="bloodGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bloodGroup1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BloodRequests" Relationship="Self.FK__BloodRequ__blood__31EC6D26" FromRole="BloodGroups" ToRole="BloodRequest" />
+    <NavigationProperty Name="Donors" Relationship="Self.FK__Donors__bloodGro__2A4B4B5E" FromRole="BloodGroups" ToRole="Donors" />
+    <NavigationProperty Name="Patients" Relationship="Self.FK__Patients__bloodG__2E1BDC42" FromRole="BloodGroups" ToRole="Patients" />
+  </EntityType>
+  <EntityType Name="BloodRequest">
+    <Key>
+      <PropertyRef Name="requestID" />
+    </Key>
+    <Property Name="requestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="patientID" Type="Int32" Nullable="false" />
+    <Property Name="bloodGroupId" Type="Int32" Nullable="false" />
+    <Property Name="caseDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="reasonForBlood" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="contactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="hospitalID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BloodGroup" Relationship="Self.FK__BloodRequ__blood__31EC6D26" FromRole="BloodRequest" ToRole="BloodGroups" />
+    <NavigationProperty Name="Hospital" Relationship="Self.FK__BloodRequ__hospi__32E0915F" FromRole="BloodRequest" ToRole="Hospital" />
+    <NavigationProperty Name="Patient" Relationship="Self.FK__BloodRequ__patie__30F848ED" FromRole="BloodRequest" ToRole="Patients" />
+  </EntityType>
+  <EntityType Name="Donor">
+    <Key>
+      <PropertyRef Name="donorId" />
+    </Key>
+    <Property Name="donorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="donorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="weight" Type="Int32" Nullable="false" />
+    <Property Name="genderId" Type="Int32" Nullable="false" />
+    <Property Name="bloodGroupId" Type="Int32" Nullable="false" />
+    <Property Name="contactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="donorAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lastDonationDate" Type="DateTime" Precision="3" />
+    <Property Name="donorImage" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BloodGroup" Relationship="Self.FK__Donors__bloodGro__2A4B4B5E" FromRole="Donors" ToRole="BloodGroups" />
+    <NavigationProperty Name="Gender" Relationship="Self.FK__Donors__genderId__29572725" FromRole="Donors" ToRole="Gender" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="genderId" />
+    </Key>
+    <Property Name="genderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gender1" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Donors" Relationship="Self.FK__Donors__genderId__29572725" FromRole="Gender" ToRole="Donors" />
+    <NavigationProperty Name="Patients" Relationship="Self.FK__Patients__gender__2D27B809" FromRole="Gender" ToRole="Patients" />
+  </EntityType>
+  <EntityType Name="Hospital">
+    <Key>
+      <PropertyRef Name="hospitalId" />
+    </Key>
+    <Property Name="hospitalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hospitalName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="hospitalAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="contactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BloodRequests" Relationship="Self.FK__BloodRequ__hospi__32E0915F" FromRole="Hospital" ToRole="BloodRequest" />
+  </EntityType>
+  <EntityType Name="Patient">
+    <Key>
+      <PropertyRef Name="patientID" />
+    </Key>
+    <Property Name="patientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="patientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="genderId" Type="Int32" Nullable="false" />
+    <Property Name="bloodGroupId" Type="Int32" Nullable="false" />
+    <Property Name="contactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="BloodGroup" Relationship="Self.FK__Patients__bloodG__2E1BDC42" FromRole="Patients" ToRole="BloodGroups" />
+    <NavigationProperty Name="BloodRequests" Relationship="Self.FK__BloodRequ__patie__30F848ED" FromRole="Patients" ToRole="BloodRequest" />
+    <NavigationProperty Name="Gender" Relationship="Self.FK__Patients__gender__2D27B809" FromRole="Patients" ToRole="Gender" />
+  </EntityType>
+  <Association Name="FK__BloodRequ__blood__31EC6D26">
+    <End Role="BloodGroups" Type="Self.BloodGroup" Multiplicity="1" />
+    <End Role="BloodRequest" Type="Self.BloodRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BloodGroups">
+        <PropertyRef Name="bloodGroupId" />
+      </Principal>
+      <Dependent Role="BloodRequest">
+        <PropertyRef Name="bloodGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Donors__bloodGro__2A4B4B5E">
+    <End Role="BloodGroups" Type="Self.BloodGroup" Multiplicity="1" />
+    <End Role="Donors" Type="Self.Donor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BloodGroups">
+        <PropertyRef Name="bloodGroupId" />
+      </Principal>
+      <Dependent Role="Donors">
+        <PropertyRef Name="bloodGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Patients__bloodG__2E1BDC42">
+    <End Role="BloodGroups" Type="Self.BloodGroup" Multiplicity="1" />
+    <End Role="Patients" Type="Self.Patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BloodGroups">
+        <PropertyRef Name="bloodGroupId" />
+      </Principal>
+      <Dependent Role="Patients">
+        <PropertyRef Name="bloodGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BloodRequ__hospi__32E0915F">
+    <End Role="Hospital" Type="Self.Hospital" Multiplicity="1" />
+    <End Role="BloodRequest" Type="Self.BloodRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hospital">
+        <PropertyRef Name="hospitalId" />
+      </Principal>
+      <Dependent Role="BloodRequest">
+        <PropertyRef Name="hospitalID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BloodRequ__patie__30F848ED">
+    <End Role="Patients" Type="Self.Patient" Multiplicity="1" />
+    <End Role="BloodRequest" Type="Self.BloodRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patients">
+        <PropertyRef Name="patientID" />
+      </Principal>
+      <Dependent Role="BloodRequest">
+        <PropertyRef Name="patientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Donors__genderId__29572725">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Donors" Type="Self.Donor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="genderId" />
+      </Principal>
+      <Dependent Role="Donors">
+        <PropertyRef Name="genderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Patients__gender__2D27B809">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Patients" Type="Self.Patient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="genderId" />
+      </Principal>
+      <Dependent Role="Patients">
+        <PropertyRef Name="genderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="procheshtaDbContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BloodGroups" EntityType="Self.BloodGroup" />
+    <EntitySet Name="BloodRequests" EntityType="Self.BloodRequest" />
+    <EntitySet Name="Donors" EntityType="Self.Donor" />
+    <EntitySet Name="Genders" EntityType="Self.Gender" />
+    <EntitySet Name="Hospitals" EntityType="Self.Hospital" />
+    <EntitySet Name="Patients" EntityType="Self.Patient" />
+    <AssociationSet Name="FK__BloodRequ__blood__31EC6D26" Association="Self.FK__BloodRequ__blood__31EC6D26">
+      <End Role="BloodGroups" EntitySet="BloodGroups" />
+      <End Role="BloodRequest" EntitySet="BloodRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Donors__bloodGro__2A4B4B5E" Association="Self.FK__Donors__bloodGro__2A4B4B5E">
+      <End Role="BloodGroups" EntitySet="BloodGroups" />
+      <End Role="Donors" EntitySet="Donors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Patients__bloodG__2E1BDC42" Association="Self.FK__Patients__bloodG__2E1BDC42">
+      <End Role="BloodGroups" EntitySet="BloodGroups" />
+      <End Role="Patients" EntitySet="Patients" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BloodRequ__hospi__32E0915F" Association="Self.FK__BloodRequ__hospi__32E0915F">
+      <End Role="Hospital" EntitySet="Hospitals" />
+      <End Role="BloodRequest" EntitySet="BloodRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BloodRequ__patie__30F848ED" Association="Self.FK__BloodRequ__patie__30F848ED">
+      <End Role="Patients" EntitySet="Patients" />
+      <End Role="BloodRequest" EntitySet="BloodRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Donors__genderId__29572725" Association="Self.FK__Donors__genderId__29572725">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="Donors" EntitySet="Donors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Patients__gender__2D27B809" Association="Self.FK__Patients__gender__2D27B809">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="Patients" EntitySet="Patients" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
